@@ -14,7 +14,7 @@ var blocks = [],
 var paddle = {
     width: 80,
     height: 10,
-    speed: 200,
+    speed: 320,
     x: 0,
     y: 0,    
     dir: 0,
