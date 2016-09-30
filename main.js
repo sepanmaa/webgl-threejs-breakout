@@ -3,7 +3,7 @@
 var blocks = [],
     width = 400,
     height = 400,
-    ROWS = 10,
+    ROWS = 16,
     COLS = 5,
     blockWidth = 80,
     blockHeight = 10,
@@ -106,9 +106,8 @@ function start() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     camera.position.z = 400;
-    camera.position.x = 300;
+    camera.position.x = 200;
     camera.position.y = 200;
-    camera.rotation.y = 10 * Math.PI / 180;
     initLights();
     initEdges();
     initStatusText();
@@ -278,8 +277,8 @@ function initGame() {
 	    blocks[i][j] = { status: 0,
 			     object: object
 			   };
-	    object.position.set(j*blockWidth+paddle.width/2,
-				height-(i*blockHeight+paddle.height/2), 0);
+	    object.position.set(j*blockWidth+blockWidth/2,
+				height-(i*blockHeight+blockHeight/2), 0);
 	    scene.add(object);
 	}
     }
