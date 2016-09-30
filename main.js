@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 
 var blocks = [],
     width = 400,
@@ -121,10 +121,8 @@ function start() {
 	var delta = timestamp - time;
 	time = timestamp;
 	var paddleDelta = paddle.speed*delta/1000;
-    	if (paddle.dir === -1 && paddle.x > paddleDelta) 
-    	    paddle.x += paddleDelta * paddle.dir;
-    	else if (paddle.dir === 1
-		 && paddle.x + paddleDelta + paddle.width < width)
+    	if ((paddle.dir === -1 && paddle.x > paddleDelta) ||
+    	    (paddle.dir === 1 && paddle.x + paddleDelta + paddle.width < width))
     	    paddle.x += paddleDelta * paddle.dir;
 	if (game.state === "running") {
 	    ball.x += ball.velocity.x * delta / 1000;
@@ -244,8 +242,9 @@ function initKeys() {
 	}
     }, false);
     document.addEventListener("keyup", (e) => {
-	if (e.keyCode === 39 || e.keyCode === 37)
-	    paddle.dir = 0;
+	if ((e.keyCode === 39 && paddle.dir === 1) ||
+	    (e.keyCode === 37 && paddle.dir === -1))
+    	    paddle.dir = 0;
     }, false);
 }
 
