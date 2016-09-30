@@ -224,7 +224,7 @@ function detectCollisions() {
 }
 
 function initKeys() {
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", function(e) {
 	if (e.keyCode === 39)
 	    paddle.dir = 1;
 	else if (e.keyCode === 37)
@@ -241,7 +241,7 @@ function initKeys() {
 	    game.state = "ready";
 	}
     }, false);
-    document.addEventListener("keyup", (e) => {
+    document.addEventListener("keyup", function(e) {
 	if ((e.keyCode === 39 && paddle.dir === 1) ||
 	    (e.keyCode === 37 && paddle.dir === -1))
     	    paddle.dir = 0;
