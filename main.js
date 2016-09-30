@@ -175,14 +175,17 @@ function detectCollisions() {
     if (ball.x+ball.radius > width) {
 	ball.velocity.x = -ball.velocity.x;
 	ball.x = width-ball.radius;
+	return;
     }
     if (ball.x-ball.radius < 0) {
 	ball.velocity.x = -ball.velocity.x;
 	ball.x = ball.radius;
+	return;
     }
     if (ball.y+ball.radius > height) {
 	ball.velocity.y = -ball.velocity.y;
 	ball.y = height-ball.radius;
+	return;
     }
     
     // paddle
@@ -199,15 +202,16 @@ function detectCollisions() {
 	    game.state = "ready";
 	    updateStatus();
 	}
+	return;
     }
     
     // blocks
     if (ball.y+ball.radius < height-ROWS*blockHeight)
-	return false;
+	return;
     var col = Math.floor((ball.x-ball.radius)/blockWidth);
     var row = Math.floor((height-ball.y-ball.radius)/blockHeight);
     if (row < 0 || col < 0 || blocks[row][col].status === 1)
-	return false;
+	return;
     var x = col*blockWidth;
     var y = height-row*blockHeight;
     if (ball.x+ball.radius >= x && ball.x-ball.radius < x+blockWidth
@@ -218,9 +222,7 @@ function detectCollisions() {
 	game.score++;
 	game.blockCount--;
 	updateStatus();
-	return true;
     }
-    return false;
 }
 
 function initKeys() {
